@@ -1,61 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_car"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMain"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.excavator.m2m.campus_ieum.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    android:background="@color/colorMain" >
+
 
     <ImageView
-        android:id="@+id/availableCar"
+        android:id="@+id/carStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_profile" />
+        app:srcCompat="@mipmap/ic_car_available" />
 
     <TextView
-        android:id="@+id/carStatusAvailable"
+        android:id="@+id/text_carStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="대기중"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:textSize="24dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/availableCar" />
+        app:layout_constraintTop_toBottomOf="@+id/carStatus" />
 
     <Button
-        android:id="@+id/buttonCarCall"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnCarCall"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/ic_radius"
         android:text="차량 호출하기"
-        app:layout_constraintDimensionRatio="6:1"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/ic_radius_btn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carStatusAvailable" />
+        app:layout_constraintTop_toBottomOf="@+id/text_carStatus"
+        app:layout_constraintDimensionRatio="6:1"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
-        android:id="@+id/buttonCarReserv"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnCarReserv"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/ic_radius"
         android:text="차량 예약하기"
-        app:layout_constraintDimensionRatio="6:1"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_radius_btn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCarCall" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCarCall"
+        app:layout_constraintDimensionRatio="6:1"
+        style="?android:attr/borderlessButtonStyle" />
+
+
 
 </android.support.constraint.ConstraintLayout>

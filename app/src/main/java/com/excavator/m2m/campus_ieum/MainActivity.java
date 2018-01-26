@@ -1,8 +1,6 @@
 package com.excavator.m2m.campus_ieum;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -41,16 +39,6 @@ public class MainActivity extends AppCompatActivity
 
         manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.content_home, new HomeActivity()).commit();
-
-        String url = "http://m2m.pilot0613.com/";
-
-        ContentValues paramValues = new ContentValues();
-        paramValues.put("car_call", "");
-        paramValues.put("status", "");
-
-        // AsyncTask를 통해 HttpURLConnection 실행
-        NetworkTask networkTask = new NetworkTask(url, paramValues);
-        networkTask.execute();
 
     }
 
@@ -126,36 +114,4 @@ public class MainActivity extends AppCompatActivity
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
-
-    /**
-     *  1. HttpURLConnection 통신을 위한 비동기 처리 AsyncTask 구현
-     **/
-    public class NetworkTask extends AsyncTask<Void, Void, String> {
-
-        private String url;
-        private ContentValues values;
-
-        public NetworkTask(String url, ContentValues values) {
-            this.url = url;
-            this.values = values;
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            String result; // 요청한 결과물 저장
-            RequestHttpURLConnection reqHttpUrlConn = new RequestHttpURLConnection();
-
-            result = reqHttpUrlConn.request(url, values); // 해당 URL로부터 결과물을 받아옴
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String str) {
-            super.onPostExecute(str);
-
-            // doInBackground 로부터 반환된 값이 onPostExecute 매개변수로 넘어오므로 str 출력
-
-        }
-    }
 }
