@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/carReservInfo_alert"
+    android:background="@android:color/transparent"
+    android:layout_marginTop="100dp"
+    app:layout_constraintTop_toBottomOf="parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/carReservInfo_sub_layout"
+        android:layout_width="306dp"
+        android:layout_height="240dp"
+        android:background="@drawable/ic_radius_little"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carReservInfo_alert" >
+
+        <TextView
+            android:id="@+id/alertReservNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름:"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginLeft="50dp"
+            app:layout_constraintTop_toBottomOf="@+id/carReservInfo_sub_layout"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/alertReservName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="김영수"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="48dp"
+            app:layout_constraintTop_toBottomOf="@+id/carReservInfo_sub_layout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/alertReservLocationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="세부위치:"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="19dp"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservNameTitle"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/alertReservLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="샬롬관 주차장"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="19dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservName" />
+
+        <TextView
+            android:id="@+id/alertReservCommentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메모:"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservLocationTitle"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/alertReservComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="동승자 있음"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="19dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservLocation" />
+
+        <TextView
+            android:id="@+id/alertReservDateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="날짜/시간:"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservCommentTitle"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/alertReservDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.12/00:00"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="19dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservComment" />
+
+        <TextView
+            android:id="@+id/alertReservPhoneTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전화번호:"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="19dp"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservDateTitle"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/alertReservPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="010-4121-6754"
+            android:textColor="@color/colorFont"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="19dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservDate" />
+
+
+        <Button
+            android:id="@+id/alertReservAllow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="승인"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:background="@drawable/ic_radius_alert_btn"
+            android:layout_marginTop="26dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservPhoneTitle"
+            app:layout_constraintDimensionRatio="2.9:1"
+            style="?android:attr/borderlessButtonStyle" />
+
+        <Button
+            android:id="@+id/alertReservDeny"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="거절"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:background="@drawable/ic_radius_alert_btn"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alertReservPhone"
+            app:layout_constraintDimensionRatio="2.9:1"
+            style="?android:attr/borderlessButtonStyle" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/alertIcon"
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_alert_icon"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

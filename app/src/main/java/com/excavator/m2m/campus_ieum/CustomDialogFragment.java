@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TextView;
 
 /**
  * Created by Beginner on 2018. 1. 26..
@@ -17,13 +18,30 @@ public class CustomDialogFragment extends DialogFragment {
 
     private Fragment fm;
 
+    String mTxt;
+    String mTxt2;
+
     public CustomDialogFragment() { }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.alert, container);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        Bundle args = getArguments();
+        if(getArguments() != null) {
+            mTxt = getArguments().getString("mTxt");
+            mTxt2 = getArguments().getString("mTxt2");
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.custom_alert, container);
+
+        TextView mTxtView = v.findViewById(R.id.alertTxt);
+        TextView mTxtView2 = v.findViewById(R.id.alertTxt2);
+
+        mTxtView.setText(mTxt);
+        mTxtView2.setText(mTxt2);
 
         fm = getActivity().getSupportFragmentManager().findFragmentByTag("tag");
 
