@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMain" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="37dp">
+                <TextView
+                    android:text="이름"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:src="@mipmap/ic_user"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"/>
+                <EditText
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/userNameEdit_DisableSignup"
+                    android:layout_width="match_parent"
+                    android:textSize="40sp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="37dp">
+                <TextView
+                    android:text="아이디(핸드폰 번호)"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:src="@mipmap/ic_phone"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"/>
+                <EditText
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/phoneNumEdit_DisableSignup"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:textSize="25sp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="37dp">
+                <TextView
+                    android:text="비밀번호 입력"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:src="@mipmap/ic_key"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"/>
+                <EditText
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/passEdit_DisableSignup"
+                    android:layout_width="match_parent"
+                    android:inputType="numberPassword"
+                    android:hint="숫자 4자리 이상"
+                    android:textSize="30sp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:src="@mipmap/ic_key"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"/>
+                <EditText
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/repassEdit_DisableSignup"
+                    android:layout_width="match_parent"
+                    android:inputType="numberPassword"
+                    android:hint="비밀번호 재입력"
+                    android:textSize="30sp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="37dp">
+                <TextView
+                    android:text="성별"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/manBtn_DisableSignup"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:textColor="#555555"
+                    android:text="남"
+                    android:background="@drawable/ic_button_back"
+                    android:textSize="30sp" />
+                <Button
+                    android:layout_marginLeft="32dp"
+                    android:id="@+id/womanBtn_DisableSignup"
+                    android:layout_width="100dp"
+                    android:background="@drawable/ic_button_back"
+                    android:layout_height="match_parent"
+                    android:textColor="#555555"
+                    android:text="여"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="37dp">
+                <TextView
+                    android:text="장애 유형 선택"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+                <Spinner
+                    android:id="@+id/disableKind_DisableSignup"
+                    android:textSize="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+                <Button
+                    android:id="@+id/signupBtn_DisableSignup"
+                    android:background="@drawable/ic_button_back"
+                    android:textColor="#555555"
+                    android:text="가입하기"
+                    android:textSize="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

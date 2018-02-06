@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +62,7 @@ public class CarReservListActivity extends Fragment {
         */
 
         // AsyncTask를 통해 HttpURLConnection 실행
+        /*
         NetworkTask networkTask = new NetworkTask(url, null);
 
 
@@ -78,6 +78,7 @@ public class CarReservListActivity extends Fragment {
             // carStatusImg.setImageResource(R.mipmap.ic_car_disavailable);
             // carStatusTxt.setText("운전중");
         }
+        */
 
 
         carReservList = new ArrayList<> ();

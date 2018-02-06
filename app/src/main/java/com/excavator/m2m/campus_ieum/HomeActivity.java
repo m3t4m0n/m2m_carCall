@@ -1,5 +1,7 @@
 package com.excavator.m2m.campus_ieum;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Beginner on 2018. 1. 18..
@@ -25,6 +28,22 @@ public class HomeActivity extends Fragment {
         view = inflater.inflate(R.layout.content_home, container, false);
 
         manager = getFragmentManager();
+
+        SharedPreferences sp = getActivity().getSharedPreferences("user_info", Activity.MODE_PRIVATE);
+        String role = sp.getString("type", "");
+        role.trim();
+
+        String strRole = "차량 도우미";
+        /*
+        switch(Integer.parseInt(role)) {
+            case 1: strRole = "도우미 학생"; break;
+            case 2: strRole = "차량 도우미"; break;
+            default: strRole = "학생"; break;
+        }
+        */
+
+        TextView profileRole = (TextView) view.findViewById(R.id.profileRole);
+        profileRole.setText(strRole);
 
         Button btnBell = (Button) view.findViewById(R.id.buttonBell);
         btnBell.setOnClickListener(new View.OnClickListener() {

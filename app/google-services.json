@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "299595389802",
+    "firebase_url": "https://fcm-push-d588c.firebaseio.com",
+    "project_id": "fcm-push-d588c",
+    "storage_bucket": "fcm-push-d588c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299595389802:android:ae3ed5d1482c683f",
+        "android_client_info": {
+          "package_name": "com.excavator.m2m.campus_ieum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299595389802-91s42k2lei12qpt5le6vej13fogl5v2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-RGrbjzBnPtsENbU9zGvI-hVFx5DT7cQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -41,7 +40,7 @@ public class RecyclerCardView extends RecyclerView.Adapter <RecyclerCardView.Vie
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(v.getContext(), "Clicked card position = " + getLayoutPosition(), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(v.getContext(), "Clicked card position = " + getLayoutPosition(), Toast.LENGTH_SHORT).show();
 
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
             // activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_home, CarReservInfoActivity.newInstance("이름: " + mDataset.get(getLayoutPosition()).getName(), "세부위치: 경천관", "메모: 동승자 없음", "날짜/시간: " + mDataset.get(getLayoutPosition()).getDate(), "전화번호: 010-2339-6754")).addToBackStack(null).commit();

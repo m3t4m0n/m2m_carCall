@@ -29,14 +29,6 @@ public class CarActivity extends Fragment {
         v = inflater.inflate(R.layout.content_car, container, false);
         manager = getFragmentManager();
 
-        String url = "http://m2m.pilot0613.com/car_call/status";
-
-        /*
-        ContentValues paramValues = new ContentValues();
-        paramValues.put("car_call", "");
-        paramValues.put("status", "");
-        */
-
         ImageView carStatusImg = v.findViewById(R.id.carStatus);
         TextView carStatusTxt = v.findViewById(R.id.text_carStatus);
 
@@ -50,14 +42,11 @@ public class CarActivity extends Fragment {
         btnCarCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // CustomDialog dialog = new CustomDialog(getActivity(), "차량 이용시간이 아닙니다.", "(이용가능시간: 00:00 ~ 09:00)");
-                // dialog.show();
 
                 if(flag) {
                     Bundle args = new Bundle();
                     args.putString("mTxt", "차량 이용시간이 아닙니다.");
                     args.putString("mTxt2", "(이용가능시간: 00:00 ~ 00:00)");
-
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
 
@@ -68,7 +57,7 @@ public class CarActivity extends Fragment {
                 else {
                     Bundle args = new Bundle();
 
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    // FragmentManager fm = getActivity().getSupportFragmentManager();
 
                     /*
                     CustomDialogReservComplete dialog = new CustomDialogReservComplete();
@@ -77,7 +66,38 @@ public class CarActivity extends Fragment {
                     dialog.show(fm, "custom_dialog_reserve_complete");
                     */
 
-                    manager.beginTransaction().replace(R.id.content_home, new CarReservReqListActivity()).commit();
+
+                    // manager.beginTransaction().replace(R.id.content_home, new CarReservReqListActivity()).commit();
+
+                    /*
+                    MyFirebaseInstanceIDService mfbidservice = new MyFirebaseInstanceIDService();
+                    mfbidservice.onTokenRefresh();
+                    FirebaseMessaging.getInstance().subscribeToTopic("car_call");
+                    FirebaseInstanceId.getInstance().getToken();
+                    */
+
+                    /*
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+
+                    CustomDialogReservComplete dialog = new CustomDialogReservComplete();
+                    dialog.setArguments(args);
+                    dialog.show(fm, "custom_dialog_reserve_complete");
+                    */
+
+
+                    // manager.beginTransaction().replace(R.id.content_home, new CarReservReqListActivity()).commit();
+
+                    String url = "http://temp_m2m.pilot0613.com/car_call/pushMessage";
+                    NetworkTask networkTask = new NetworkTask(url, null);
+
+                    String flag = null;
+
+                    try {
+                        flag = networkTask.execute().get();
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
@@ -90,6 +110,9 @@ public class CarActivity extends Fragment {
             }
         });
 
+
+        String url = "http://temp_m2m.pilot0613.com/car_call/status";
+
         // AsyncTask를 통해 HttpURLConnection 실행
         NetworkTask networkTask = new NetworkTask(url, null);
 
@@ -101,6 +124,7 @@ public class CarActivity extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         if(carStatus.equals("disavailable")) {
             carStatusImg.setImageResource(R.mipmap.ic_car_disavailable);
