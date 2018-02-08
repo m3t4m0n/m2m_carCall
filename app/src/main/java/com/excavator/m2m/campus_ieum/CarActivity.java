@@ -1,5 +1,6 @@
 package com.excavator.m2m.campus_ieum;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,9 @@ public class CarActivity extends Fragment {
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setText("차량호출");
 
+        SharedPreferences user_info = this.getActivity().getSharedPreferences("user_info", 0);
+
+
         flag = false;
 
         Button btnCarCall = (Button) v.findViewById(R.id.btnCarCall);
@@ -69,12 +73,6 @@ public class CarActivity extends Fragment {
 
                     // manager.beginTransaction().replace(R.id.content_home, new CarReservReqListActivity()).commit();
 
-                    /*
-                    MyFirebaseInstanceIDService mfbidservice = new MyFirebaseInstanceIDService();
-                    mfbidservice.onTokenRefresh();
-                    FirebaseMessaging.getInstance().subscribeToTopic("car_call");
-                    FirebaseInstanceId.getInstance().getToken();
-                    */
 
                     /*
                     FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -90,10 +88,10 @@ public class CarActivity extends Fragment {
                     String url = "http://temp_m2m.pilot0613.com/car_call/pushMessage";
                     NetworkTask networkTask = new NetworkTask(url, null);
 
-                    String flag = null;
+                    String result = null;
 
                     try {
-                        flag = networkTask.execute().get();
+                        result = networkTask.execute().get();
                     } catch(Exception e) {
                         e.printStackTrace();
                     }

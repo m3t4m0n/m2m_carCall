@@ -16,6 +16,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class MyFirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
+    private NotificationUtils mNotificationUtils;
     private static final String TAG = "FirebaseMsgService";
 
     @Override
@@ -25,17 +26,20 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
     }
 
     private void sendNotification(String messageBody) {
+        mNotificationUtils = new NotificationUtils(this);
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
+        String channelId = "com.excavator.m2m.campus_ieum";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("FCM Push Test")
                 .setContentText(messageBody)
                 .setAutoCancel(true)
+                .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =

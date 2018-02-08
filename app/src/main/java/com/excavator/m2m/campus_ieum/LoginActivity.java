@@ -32,13 +32,38 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        final SharedPreferences loginInformation = getSharedPreferences("setting", 0);
+        final SharedPreferences user_info = getSharedPreferences("user_info", 0);
+        String id = user_info.getString("id", "");
+        String pw = user_info.getString("pass", "");
+
+        if(!id.equals("") && !pw.equals("")) {
+            String url = "http://temp_m2m.pilot0613.com/user/getInfo";
+
+            ContentValues loginParam = new ContentValues();
+            loginParam.put("id", id);
+
+            NetworkTask networkTask = new NetworkTask(url, loginParam);
+            String info = null;
+            try {
+                info = networkTask.execute().get();
+                Log.i("get_role: ", info);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+
+            if(info != null) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        }
 
         final EditText idEdit = (EditText)findViewById(R.id.idEdit_Login);
         final EditText passEdit = (EditText)findViewById(R.id.passEdit_Login);
 
         Switch sw = (Switch)findViewById(R.id.autoLogin_Login);
-        if(!loginInformation.getString("id", "").equals("")) {
+        if(!user_info.getString("id", "").equals("")) {
             /*
             new AsyncTask<String, Void, String>() {
                 @Override
@@ -78,7 +103,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }.execute("http:/localhost:8080/myopenapi.jsp?method=login&userId=" + loginInformation.getString("id", "") + "&userPass=" + loginInformation.getString("pass", ""));
             */
-            sw.setChecked(true);
+
+            // sw.setChecked(true);
         }
 
         TextView findPass = (TextView) findViewById(R.id.findPassTV_Login);
@@ -106,12 +132,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    SharedPreferences.Editor editor = loginInformation.edit();
+                    SharedPreferences.Editor editor = user_info.edit();
                     editor.putString("id", idEdit.getText().toString());
                     editor.putString("pass", passEdit.getText().toString());
                     editor.commit();
                 }else{
-                    SharedPreferences.Editor editor = loginInformation.edit();
+                    SharedPreferences.Editor editor = user_info.edit();
                     editor.putString("id", "");
                     editor.putString("pass", "");
                     editor.commit();

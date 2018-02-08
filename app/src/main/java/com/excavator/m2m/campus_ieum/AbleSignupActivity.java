@@ -1,10 +1,8 @@
 package com.excavator.m2m.campus_ieum;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -156,6 +154,7 @@ public class AbleSignupActivity extends AppCompatActivity {
 
                 Log.i("DEBUG", flag);
 
+                /*
                 if(flag.equals("complete")) {
                     SharedPreferences sp = getSharedPreferences("user_info", Activity.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
@@ -168,6 +167,7 @@ public class AbleSignupActivity extends AppCompatActivity {
 
                     editor.commit();
                 }
+                */
 
             }
         });
