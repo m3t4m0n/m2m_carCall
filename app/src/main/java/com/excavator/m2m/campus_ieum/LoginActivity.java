@@ -32,32 +32,21 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        final SharedPreferences user_info = getSharedPreferences("user_info", 0);
-        String id = user_info.getString("id", "");
-        String pw = user_info.getString("pass", "");
+        final SharedPreferences user_info = getSharedPreferences("user_auth", 0);
+        String auto_id = user_info.getString("id", "");
+        String auto_pw = user_info.getString("pass", "");
 
-        if(!id.equals("") && !pw.equals("")) {
-            String url = "http://temp_m2m.pilot0613.com/user/getInfo";
+        Log.d("LOGIN ACTIVITY", auto_id);
+        if(!auto_id.equals("") && !auto_pw.equals("")) {
 
-            ContentValues loginParam = new ContentValues();
-            loginParam.put("id", id);
-
-            NetworkTask networkTask = new NetworkTask(url, loginParam);
-            String info = null;
-            try {
-                info = networkTask.execute().get();
-                Log.i("get_role: ", info);
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-
-            if(info != null) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-            }
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            // intent.putExtra("user_id", auto_id);
+            // intent.putExtra("user_pw", auto_pw);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
         }
+
 
         final EditText idEdit = (EditText)findViewById(R.id.idEdit_Login);
         final EditText passEdit = (EditText)findViewById(R.id.passEdit_Login);
@@ -156,8 +145,11 @@ public class LoginActivity extends AppCompatActivity {
                     String url = "http://temp_m2m.pilot0613.com/user/signin";
 
                     ContentValues paramValues = new ContentValues();
-                    paramValues.put("name", userId.getText().toString());
-                    paramValues.put("password", userPass.getText().toString());
+                    String nonauto_id = userId.getText().toString();
+                    String nonauto_pw = userPass.getText().toString();
+
+                    paramValues.put("name", nonauto_id);
+                    paramValues.put("password", nonauto_pw);
 
                     NetworkTask signInTask = new NetworkTask(url, paramValues);
 
@@ -213,6 +205,8 @@ public class LoginActivity extends AppCompatActivity {
                     if(result.equals("true")) {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.putExtra("user_id", nonauto_id);
+                        intent.putExtra("user_pw", nonauto_pw);
                         startActivity(intent);
                         overridePendingTransition(0, 0);
                     }

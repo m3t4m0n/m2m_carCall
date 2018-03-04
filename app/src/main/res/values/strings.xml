@@ -11,4 +11,7 @@
 
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="default_notification_channel_name" translatable="true">Call</string>
+
+    <string name="google_maps_key">AIzaSyBEOrosdBsthhHk_9-wLv7nT1Bp4PP2rm8</string>
+
 </resources>

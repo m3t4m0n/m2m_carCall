@@ -1,6 +1,8 @@
 package com.excavator.m2m.campus_ieum;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -9,10 +11,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,6 +28,37 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*
+        Intent intent = getIntent();
+        String user_id = intent.getStringExtra("user_id");
+        String user_pw = intent.getStringExtra("user_pw");
+        */
+
+        SharedPreferences sharedPreferences = getSharedPreferences("user_auth", 0);
+        String user_id = sharedPreferences.getString("id", "");
+
+        String url = "http://temp_m2m.pilot0613.com/user/getInfo";
+        ContentValues paramValues = new ContentValues();
+        paramValues.put("name", user_id);
+        Log.i("MAIN_USER_NAME", user_id);
+
+        NetworkTask networkTask = new NetworkTask(url, paramValues);
+        String result = null;
+        try {
+            result = networkTask.execute().get();
+            JSONObject userObject = new JSONObject(result);
+
+            // instance holder static singleton 유저 정보 저장
+            UserAuthInfo.getInstance().receiveObject(userObject);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        // UserAuthInfo userAuthInfo = UserAuthInfo.getInstance();
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

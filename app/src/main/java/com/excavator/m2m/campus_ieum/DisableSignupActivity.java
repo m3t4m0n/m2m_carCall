@@ -19,6 +19,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 /**
  * Created by aks56 on 2018-01-01.
  */
@@ -119,43 +122,52 @@ public class DisableSignupActivity extends AppCompatActivity {
                 else if(disableKind == 0)
                     Toast.makeText(getApplicationContext(), "장애 유형을 선택해주세요.", Toast.LENGTH_SHORT).show();
                 else {
+                    String user_id = userName.getText().toString();
+                    ContentValues paramValues = new ContentValues();
+
+                    paramValues.put("name", user_id);
+                    paramValues.put("phone", phoneNumEdit.getText().toString());
+                    paramValues.put("password", userPass.getText().toString());
+                    paramValues.put("gender", manFlag ? "man" : "woman");
+                    paramValues.put("type", disableKind);
+
+                    MyFirebaseInstanceIDService mfbidservice = new MyFirebaseInstanceIDService();
+                    mfbidservice.onTokenRefresh();
+                    FirebaseMessaging.getInstance().subscribeToTopic("car_call");
+                    paramValues.put("token", FirebaseInstanceId.getInstance().getToken());
+
+                    String url = "http://temp_m2m.pilot0613.com/user/signup";
+                    NetworkTask signUpTask = new NetworkTask(url, paramValues);
+
+                    String flag = null;
+                    try {
+                        flag = signUpTask.execute().get();
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    Log.i("DEBUG", flag);
+
+                    if(flag.equals("complete")) {
+                        SharedPreferences sp = getSharedPreferences("user_info", Activity.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp.edit();
+
+                        editor.putString("name", user_id);
+                        editor.putString("phone", phoneNumEdit.getText().toString());
+                        editor.putString("password", userPass.getText().toString());
+                        editor.putString("gender", manFlag ? "man" : "woman");
+                        editor.putString("type", Integer.toString(disableKind));
+
+                        editor.commit();
+                    }
+
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    intent.putExtra("user_id", user_id);
                     overridePendingTransition(0, 0);
-                }
 
-                ContentValues paramValues = new ContentValues();
 
-                paramValues.put("name", userName.getText().toString());
-                paramValues.put("phone", phoneNumEdit.getText().toString());
-                paramValues.put("password", userPass.getText().toString());
-                paramValues.put("gender", manFlag ? "man" : "woman");
-                paramValues.put("type", disableKind);
-
-                String url = "http://temp_m2m.pilot0613.com/user/signup";
-                NetworkTask signUpTask = new NetworkTask(url, paramValues);
-
-                String flag = null;
-                try {
-                    flag = signUpTask.execute().get();
-                } catch(Exception e) {
-                    e.printStackTrace();
-                }
-
-                Log.i("DEBUG", flag);
-
-                if(flag.equals("complete")) {
-                    SharedPreferences sp = getSharedPreferences("user_info", Activity.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sp.edit();
-
-                    editor.putString("name", userName.getText().toString());
-                    editor.putString("phone", phoneNumEdit.getText().toString());
-                    editor.putString("password", userPass.getText().toString());
-                    editor.putString("gender", manFlag ? "man" : "woman");
-                    editor.putString("type", Integer.toString(disableKind));
-
-                    editor.commit();
                 }
 
             }

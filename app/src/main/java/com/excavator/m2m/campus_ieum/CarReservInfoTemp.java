@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -17,6 +18,8 @@ import android.widget.TextView;
 public class CarReservInfoTemp extends Fragment {
     View v;
     FragmentManager manager;
+
+    Button btnCarAllow, btnCarRefuse;
 
     String mName;
     String mLocation;
@@ -74,6 +77,22 @@ public class CarReservInfoTemp extends Fragment {
         mReservComment.setText(mComment);
         mReservDate.setText(mDate);
         mReservPhone.setText(mPhone);
+
+        btnCarAllow = (Button) v.findViewById(R.id.btnCarAllow);
+        btnCarAllow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnCarRefuse = (Button) v.findViewById(R.id.btnCarRefuse);
+        btnCarRefuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         return v;
     }

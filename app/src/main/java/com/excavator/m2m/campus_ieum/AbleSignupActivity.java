@@ -123,36 +123,39 @@ public class AbleSignupActivity extends AppCompatActivity {
                 else if(helpKind == 0)
                     Toast.makeText(getApplicationContext(), "유형을 선택해주세요.", Toast.LENGTH_SHORT).show();
                 else {
+                    String user_id = userName.getText().toString();
+
+                    ContentValues paramValues = new ContentValues();
+                    paramValues.put("name", user_id);
+                    paramValues.put("phone", phoneNumEdit.getText().toString());
+                    paramValues.put("password", userPass.getText().toString());
+                    paramValues.put("gender", manFlag ? "man" : "woman");
+                    paramValues.put("type", helpKind);
+
+                    MyFirebaseInstanceIDService mfbidservice = new MyFirebaseInstanceIDService();
+                    mfbidservice.onTokenRefresh();
+                    FirebaseMessaging.getInstance().subscribeToTopic("car_call");
+                    paramValues.put("token", FirebaseInstanceId.getInstance().getToken());
+
+                    String url = "http://temp_m2m.pilot0613.com/user/signup";
+                    NetworkTask signUpTask = new NetworkTask(url, paramValues);
+
+                    String flag = null;
+                    try {
+                        flag = signUpTask.execute().get();
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    Log.i("DEBUG", flag);
+
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("user_id", user_id);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }
 
-                ContentValues paramValues = new ContentValues();
-
-                paramValues.put("name", userName.getText().toString());
-                paramValues.put("phone", phoneNumEdit.getText().toString());
-                paramValues.put("password", userPass.getText().toString());
-                paramValues.put("gender", manFlag ? "man" : "woman");
-                paramValues.put("type", helpKind);
-
-                MyFirebaseInstanceIDService mfbidservice = new MyFirebaseInstanceIDService();
-                mfbidservice.onTokenRefresh();
-                FirebaseMessaging.getInstance().subscribeToTopic("car_call");
-                paramValues.put("token", FirebaseInstanceId.getInstance().getToken());
-
-                String url = "http://temp_m2m.pilot0613.com/user/signup";
-                NetworkTask signUpTask = new NetworkTask(url, paramValues);
-
-                String flag = null;
-                try {
-                    flag = signUpTask.execute().get();
-                } catch(Exception e) {
-                    e.printStackTrace();
-                }
-
-                Log.i("DEBUG", flag);
 
                 /*
                 if(flag.equals("complete")) {

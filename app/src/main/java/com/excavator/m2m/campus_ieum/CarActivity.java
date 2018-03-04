@@ -39,7 +39,6 @@ public class CarActivity extends Fragment {
 
         SharedPreferences user_info = this.getActivity().getSharedPreferences("user_info", 0);
 
-
         flag = false;
 
         Button btnCarCall = (Button) v.findViewById(R.id.btnCarCall);
@@ -70,8 +69,19 @@ public class CarActivity extends Fragment {
                     dialog.show(fm, "custom_dialog_reserve_complete");
                     */
 
+                    UserAuthInfo userAuthInfo = UserAuthInfo.getInstance();
+                    int intRole_type = Integer.parseInt(userAuthInfo.role_type);
 
-                    // manager.beginTransaction().replace(R.id.content_home, new CarReservReqListActivity()).commit();
+                    Log.i("ROLE", Integer.toString(intRole_type));
+
+
+                    switch(intRole_type) {
+                        case 1: break;
+                        case 2: break;
+                        default:
+                            manager.beginTransaction().replace(R.id.content_home, new CarReservLocationActivity()).commit();
+                            // manager.beginTransaction().replace(R.id.content_home, new CarReservReqListActivity()).commit();
+                    }
 
 
                     /*
@@ -85,6 +95,7 @@ public class CarActivity extends Fragment {
 
                     // manager.beginTransaction().replace(R.id.content_home, new CarReservReqListActivity()).commit();
 
+                    /*
                     String url = "http://temp_m2m.pilot0613.com/car_call/pushMessage";
                     NetworkTask networkTask = new NetworkTask(url, null);
 
@@ -95,6 +106,7 @@ public class CarActivity extends Fragment {
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
+                    */
 
                 }
             }

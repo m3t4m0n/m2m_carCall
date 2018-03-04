@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.MapView;
@@ -130,6 +131,17 @@ public class CarReservReqListActivity extends Fragment {
 
             mAdapter = new RecyclerCardViewTab(carReqList);
             mRecyclerView.setAdapter(mAdapter);
+
+
+            Button btnCarReservReq = (Button) rootView.findViewById(R.id.btnCarReservReq);
+            btnCarReservReq.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.content_home, new CarReservLocationActivity());
+                }
+
+            });
 
 
             return rootView;

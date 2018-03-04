@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_car_reserv_location"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMain" >
+
+    <TextView
+        android:id="@+id/textMapSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/carReservMap"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/colorWhite"
+        android:text="지도에서 선택" />
+
+    <FrameLayout
+        android:id="@+id/carReservMapFragment"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/textMapSelect"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp">
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/carSelectLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/carReservMapFragment"
+        android:layout_below="@+id/carReservMapFragment"
+        android:layout_marginTop="29dp"
+        android:background="@color/colorWhite"
+        android:padding="10dp"
+        android:text="건물 선택"
+        android:textSize="12dp" />
+
+    <Spinner
+        android:id="@+id/locationSpinner"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/carReservMapFragment"
+        android:layout_alignTop="@+id/carSelectLocation" />
+
+
+</RelativeLayout>

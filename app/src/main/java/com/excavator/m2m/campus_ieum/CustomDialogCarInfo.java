@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Beginner on 2018. 1. 29..
@@ -16,12 +18,13 @@ import android.widget.TextView;
 
 public class CustomDialogCarInfo extends DialogFragment {
     private Fragment fm;
+    private Button btnCarAllow, btnCarRefuse;
 
-    String mName;
-    String mLocation;
-    String mComment;
-    String mDate;
-    String mPhone;
+    private String mName;
+    private String mLocation;
+    private String mComment;
+    private String mDate;
+    private String mPhone;
 
     public CustomDialogCarInfo() { }
 
@@ -61,6 +64,25 @@ public class CustomDialogCarInfo extends DialogFragment {
 
         // remove dialog background
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+        btnCarAllow = (Button) v.findViewById(R.id.alertReservAllow);
+        btnCarAllow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "예약 수락", Toast.LENGTH_SHORT).show();
+                getDialog().dismiss();
+            }
+        });
+
+        btnCarRefuse = (Button) v.findViewById(R.id.alertReservDeny);
+        btnCarRefuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "예약 거절", Toast.LENGTH_SHORT).show();
+                getDialog().dismiss();
+            }
+        });
 
         return v;
     }
